@@ -1,17 +1,21 @@
 package com.amateurcode.mymemorygame
 
-import androidx.appcompat.app.AppCompatActivity
+import android.animation.ArgbEvaluator
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.WindowCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amateurcode.mymemorygame.models.BoardSize
-import com.amateurcode.mymemorygame.models.MemoryCard
 import com.amateurcode.mymemorygame.models.MemoryGame
-import com.amateurcode.mymemorygame.utils.DEFAULT_ICONS
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -20,22 +24,77 @@ class MainActivity : AppCompatActivity() {
     private lateinit var clRoot: ConstraintLayout
     private lateinit var tvNumMoves: TextView
     private lateinit var tvNumPairs: TextView
-
     private lateinit var memoryGame: MemoryGame
     private lateinit var adapter: MemoryBoardAdapter
+    private lateinit var menu: Menu
+
     private var boardSize: BoardSize = BoardSize.EASY
 
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        //WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
+        var toolbar: Toolbar = findViewById(R.id.toolBar)
+        setSupportActionBar(toolbar)
 
         clRoot = findViewById(R.id.clRoot)
         rvBoard = findViewById(R.id.rvBoard)
         tvNumMoves = findViewById(R.id.tvNumMoves)
         tvNumPairs = findViewById(R.id.tvNumPairs)
+        setUpBoard()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true;
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+           R.id.miRefresh ->{
+               if(memoryGame.getNumMoves() > 0 && !memoryGame.haveWonGame()){
+                   showAlertDialogue("Quit your current Game",null){
+                       setUpBoard()
+                   }
+               }else{
+                   setUpBoard()
+               }
+           }
+        }
+        return true
+    }
+    private fun showAlertDialogue(title: String, view: View?, positiveClickListener: View.OnClickListener) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setView(view)
+            .setNegativeButton("CANCEL", null)
+            .setPositiveButton("OK") { _, _ ->
+                positiveClickListener.onClick(null)
+            }.show()
+    }
+
+    private fun setUpBoard(){
+        when(boardSize){
+            BoardSize.EASY -> {
+                tvNumMoves.text = "Easy: 4 x 2"
+                tvNumPairs.text = "Pairs: 0 / 4"
+            }
+            BoardSize.MEDIUM -> {
+                tvNumMoves.text = "Easy: 6 x 3"
+                tvNumPairs.text = "Pairs: 0 / 9"
+
+            }
+            BoardSize.HARD -> {
+                tvNumMoves.text = "Easy: 6 x 4"
+                tvNumPairs.text = "Pairs: 0 / 12"
+
+            }
+        }
+
+        tvNumPairs.setTextColor(ContextCompat.getColor(this, R.color.colorError))
         memoryGame = MemoryGame(boardSize)
 
         // This will become dynamic later on depending on the level
@@ -50,7 +109,6 @@ class MainActivity : AppCompatActivity() {
         rvBoard.adapter = adapter
         rvBoard.setHasFixedSize(true)
         rvBoard.layoutManager = GridLayoutManager(this, boardSize.getWidth())
-
     }
 
     private fun updateGameWithFlip(position: Int) {
@@ -58,11 +116,22 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(clRoot, "You have already Won", Snackbar.LENGTH_LONG).show()
         }
         if(memoryGame.isCardFaceUp(position)){
-            Snackbar.make(clRoot, "INVALID MOVE!!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(clRoot, "INVALID MOVE!!", Snackbar.LENGTH_SHORT).show()
         }
         if(memoryGame.flipCard(position)){
-            tvNumPairs.setText("Pairs: ${memoryGame.numPairsFound} / ${boardSize.getNumPairs()}")
+            val color = ArgbEvaluator().evaluate(
+                memoryGame.numPairsFound.toFloat() / boardSize.getNumPairs(),
+                    ContextCompat.getColor(this, R.color.colorError),
+                    ContextCompat.getColor(this, R.color.colorProgressFull)
+                ) as Int
+
+            tvNumPairs.setTextColor(color)
+            tvNumPairs.text = "Pairs: ${memoryGame.numPairsFound} / ${boardSize.getNumPairs()}"
+            if(memoryGame.haveWonGame()){
+                Snackbar.make(clRoot, "You Won Congratulations", Snackbar.LENGTH_LONG).show()
+            }
         }
+        tvNumMoves.text = "Moves: ${memoryGame.getNumMoves()}"
         adapter.notifyDataSetChanged()
     }
 }

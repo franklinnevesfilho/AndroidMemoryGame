@@ -3,8 +3,10 @@ package com.amateurcode.mymemorygame.models
 import com.amateurcode.mymemorygame.utils.DEFAULT_ICONS
 
 class MemoryGame (private val boardSize: BoardSize){
+
     val cards: List<MemoryCard>
     var numPairsFound = 0;
+    private var numMoves = 0;
 
     private var indexOfPreviousCard: Int? = null;
 
@@ -17,6 +19,7 @@ class MemoryGame (private val boardSize: BoardSize){
     }
 
     fun flipCard(position: Int):Boolean {
+        numMoves++
         val card = cards[position]
         var result = false
         if(indexOfPreviousCard == null){
@@ -57,5 +60,9 @@ class MemoryGame (private val boardSize: BoardSize){
 
     fun isCardFaceUp(position: Int): Boolean {
         return cards[position].isFaceUp
+    }
+
+    fun getNumMoves(): Int {
+        return numMoves / 2
     }
 }

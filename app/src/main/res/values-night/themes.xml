@@ -10,11 +10,11 @@
 
         <item name="colorSecondary">@color/colorDarkSecondary</item>
         <item name="colorOnSecondary">@color/colorDarkOnSecondary</item>
-        <item name="colorSecondaryContainer">@color/colorDarkContainerPrimary</item>
+        <item name="colorSecondaryContainer">@color/colorDarkContainerSecondary</item>
 
         <item name="colorTertiary">@color/colorDarkTertiary</item>
         <item name="colorOnTertiary">@color/colorDarkOnTertiary</item>
-        <item name="colorTertiaryContainer">@color/colorDarkContainerPrimary</item>
+        <item name="colorTertiaryContainer">@color/colorDarkContainerTertiary</item>
 
         <item name="colorError">@color/colorDarkError</item>
 
@@ -22,6 +22,9 @@
         <item name="colorOnBackground">@color/colorDarkOnBackground</item>
 
         <item name="colorOutline">@color/colorDarkOutline</item>
+
+        <item name="android:statusBarColor">@color/colorDarkContainerPrimary</item>
+        <item name="android:navigationBarColor">@color/colorDarkContainerPrimary</item>
 
     </style>
 </resources>

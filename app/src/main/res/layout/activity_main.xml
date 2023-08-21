@@ -6,24 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:theme="@style/Base.Theme.MyMemoryGame">
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBoard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
         android:overScrollMode="never"
         app:layout_constraintBottom_toTopOf="@+id/LoBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <LinearLayout
         android:id="@+id/LoBottom"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorOnPrimaryContainer"
+        android:background="?attr/colorPrimaryContainer"
         android:orientation="horizontal"
         android:paddingBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimaryContainer"
+            app:cardBackgroundColor="?attr/colorPrimary"
             app:cardCornerRadius="8dp">
 
             <TextView
@@ -46,7 +55,7 @@
                 android:padding="8dp"
                 android:text="Moves: 0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="?attr/colorOnPrimary" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -54,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimaryContainer"
+            app:cardBackgroundColor="?attr/colorPrimary"
             app:cardCornerRadius="8dp">
 
             <TextView
@@ -64,8 +73,7 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="Pairs: 0/4"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorPrimary" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 

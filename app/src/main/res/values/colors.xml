@@ -46,4 +46,7 @@
 
     <color name="colorOutline">#70787d</color>
     <color name="colorDarkOutline">#8a9296</color>
+    <color name="colorProgressNone">#FF0000</color>
+    <color name="colorProgressFull">#00FF00</color>
+    <color name="purple_200">#CB36F4</color>
 </resources>
