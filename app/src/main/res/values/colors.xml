@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="faded">#656565</color>
+
+    <color name="colorPrimary">#325ca8</color>
+    <color name="colorDarkPrimary">#aec6ff</color>
+
+    <color name="colorContainerPrimary">#d8e2ff</color>
+    <color name="colorDarkContainerPrimary">#12448f</color>
+
+    <color name="colorOnContainerPrimary">#001a42</color>
+    <color name="colorDarkOnContainerPrimary">#d8e2ff</color>
+
+
+    <color name="colorOnPrimary">#ffffff</color>
+    <color name="colorDarkOnPrimary">#002e6a</color>
+
+    <color name="colorSecondary">#006495</color>
+    <color name="colorDarkSecondary">#90cdff</color>
+
+    <color name="colorContainerSecondary">#cbe6ff</color>
+    <color name="colorDarkContainerSecondary">#004b72</color>
+
+    <color name="colorOnSecondary">#ffffff</color>
+    <color name="colorDarkOnSecondary">#003450</color>
+
+    <color name="colorTertiary">#745b00</color>
+    <color name="colorDarkTertiary">#3d2f00</color>
+
+    <color name="colorContainerTertiary">#ffe08d</color>
+    <color name="colorDarkContainerTertiary">#584400</color>
+
+    <color name="colorOnTertiary">#ffffff</color>
+    <color name="colorDarkOnTertiary">#745b00</color>
+
+    <color name="colorError">#ba1a1a</color>
+    <color name="colorDarkError">#ffb4ab</color>
+
+    <color name="colorBackground">#fefbff</color>
+    <color name="colorDarkBackground">#1b1b1f</color>
+
+    <color name="colorOnBackground">#1b1b1f</color>
+    <color name="colorDarkOnBackground">#e3e2e6</color>
+
+    <color name="colorOutline">#70787d</color>
+    <color name="colorDarkOutline">#8a9296</color>
+</resources>

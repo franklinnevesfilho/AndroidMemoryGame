@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyMemoryGame" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorOnPrimary">@color/colorDarkOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorDarkContainerPrimary</item>
+        <item name="colorOnPrimaryContainer">@color/colorDarkOnContainerPrimary</item>
+
+
+        <item name="colorSecondary">@color/colorDarkSecondary</item>
+        <item name="colorOnSecondary">@color/colorDarkOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorDarkContainerPrimary</item>
+
+        <item name="colorTertiary">@color/colorDarkTertiary</item>
+        <item name="colorOnTertiary">@color/colorDarkOnTertiary</item>
+        <item name="colorTertiaryContainer">@color/colorDarkContainerPrimary</item>
+
+        <item name="colorError">@color/colorDarkError</item>
+
+        <item name="backgroundColor">@color/colorDarkBackground</item>
+        <item name="colorOnBackground">@color/colorDarkOnBackground</item>
+
+        <item name="colorOutline">@color/colorDarkOutline</item>
+
+    </style>
+</resources>
