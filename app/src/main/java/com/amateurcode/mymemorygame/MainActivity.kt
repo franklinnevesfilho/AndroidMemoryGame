@@ -1,11 +1,13 @@
 package com.amateurcode.mymemorygame
 
 import android.animation.ArgbEvaluator
-import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -31,12 +33,11 @@ class MainActivity : AppCompatActivity() {
     private var boardSize: BoardSize = BoardSize.EASY
 
 
-    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_main)
-        var toolbar: Toolbar = findViewById(R.id.toolBar)
+        val toolbar: Toolbar = findViewById(R.id.toolBar)
         setSupportActionBar(toolbar)
 
         clRoot = findViewById(R.id.clRoot)
@@ -44,7 +45,12 @@ class MainActivity : AppCompatActivity() {
         tvNumMoves = findViewById(R.id.tvNumMoves)
         tvNumPairs = findViewById(R.id.tvNumPairs)
         setUpBoard()
+    }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+//        rvBoard.layoutManager = GridLayoutManager(this, boardSize.getWidth())
+        rvBoard.adapter = adapter
+        super.onConfigurationChanged(newConfig)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -63,9 +69,27 @@ class MainActivity : AppCompatActivity() {
                    setUpBoard()
                }
            }
+            R.id.miNewSize->{
+                showNewSizeDialog()
+            }
         }
         return true
     }
+
+    private fun showNewSizeDialog() {
+        val boardSizeView = LayoutInflater.from(this).inflate(R.layout.dialog_board_size,null)
+        val radioGroupSize = boardSizeView.findViewById<RadioGroup>(R.id.radioGroup)
+        showAlertDialogue("Choose new size", boardSizeView){
+            boardSize = when(radioGroupSize.checkedRadioButtonId){
+                R.id.rbEasy -> BoardSize.EASY
+                R.id.rbMedium -> BoardSize.MEDIUM
+                else -> BoardSize.HARD
+            }
+
+            setUpBoard()
+        }
+    }
+
     private fun showAlertDialogue(title: String, view: View?, positiveClickListener: View.OnClickListener) {
         AlertDialog.Builder(this)
             .setTitle(title)
@@ -107,16 +131,13 @@ class MainActivity : AppCompatActivity() {
 
         //The size of the RecyclerView (rvBoard) will always remain the same regardless of the adapter
         rvBoard.adapter = adapter
-        rvBoard.setHasFixedSize(true)
+        rvBoard.setHasFixedSize(false)
         rvBoard.layoutManager = GridLayoutManager(this, boardSize.getWidth())
     }
 
     private fun updateGameWithFlip(position: Int) {
         if(memoryGame.haveWonGame()){
             Snackbar.make(clRoot, "You have already Won", Snackbar.LENGTH_LONG).show()
-        }
-        if(memoryGame.isCardFaceUp(position)){
-            Snackbar.make(clRoot, "INVALID MOVE!!", Snackbar.LENGTH_SHORT).show()
         }
         if(memoryGame.flipCard(position)){
             val color = ArgbEvaluator().evaluate(

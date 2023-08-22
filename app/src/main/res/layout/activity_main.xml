@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
             app:cardCornerRadius="8dp">
 
             <TextView
@@ -55,7 +55,7 @@
                 android:padding="8dp"
                 android:text="Moves: 0"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?attr/colorOnPrimary" />
+                android:textColor="?attr/colorPrimary" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardBackgroundColor="?attr/colorOnPrimary"
             app:cardCornerRadius="8dp">
 
             <TextView

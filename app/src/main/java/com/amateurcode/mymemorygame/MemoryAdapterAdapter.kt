@@ -50,7 +50,6 @@ class MemoryBoardAdapter(
         return ViewHolder(view)
     }
 
-
     // how many elements
     override fun getItemCount() = boardSize.numCards
 

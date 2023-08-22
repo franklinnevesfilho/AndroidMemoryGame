@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/miRefresh"
         android:icon="@drawable/ic_refresh"
-        android:iconTint="?attr/colorPrimary"
         android:title="Refresh"
+        app:iconTint="?attr/colorPrimary"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/miNewSize"
+        android:title="Choose new size"
+        app:showAsAction="never" />
 </menu>

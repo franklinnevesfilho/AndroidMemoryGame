@@ -25,11 +25,15 @@ class MemoryGame (private val boardSize: BoardSize){
         if(indexOfPreviousCard == null){
             restoreCards()
             indexOfPreviousCard = position
-        }else{
+        }else if(position == indexOfPreviousCard){
+            restoreCards()
+            numMoves--
+        }else if(!card.isMatched){
             result = checkForMatch(indexOfPreviousCard!!,position)
             indexOfPreviousCard = null;
         }
-        card.isFaceUp = !card.isFaceUp
+
+        if(!card.isFaceUp) card.isFaceUp = true
 
         return result;
     }
@@ -38,7 +42,6 @@ class MemoryGame (private val boardSize: BoardSize){
         var result = false
         if(cards[position1].identifier == cards[position2].identifier){
             result = true
-
             cards[position1].isMatched = true
             cards[position2].isMatched = true
             numPairsFound++
