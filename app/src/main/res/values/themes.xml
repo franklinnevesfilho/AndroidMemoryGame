@@ -22,12 +22,11 @@
 
         <item name="colorOutline">@color/colorOutline</item>
 
-        <item name="android:statusBarColor">@color/colorContainerPrimary</item>
-        <item name="android:navigationBarColor">@color/colorContainerPrimary</item>
 
+        <item name="android:statusBarColor">@color/colorBackground</item>
+        <item name="android:navigationBarColor">@color/colorContainerPrimary</item>
     </style>
 
     <style name="Theme.MyMemoryGame" parent="Base.Theme.MyMemoryGame" >
-<!--        <item name = "android:windowActionBar">true</item>-->
     </style>
 </resources>

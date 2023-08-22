@@ -23,7 +23,7 @@
 
         <item name="colorOutline">@color/colorDarkOutline</item>
 
-        <item name="android:statusBarColor">@color/colorDarkContainerPrimary</item>
+        <item name="android:statusBarColor">@color/colorDarkBackground</item>
         <item name="android:navigationBarColor">@color/colorDarkContainerPrimary</item>
 
     </style>
